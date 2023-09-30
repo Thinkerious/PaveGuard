@@ -3,7 +3,6 @@ import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-//import sendData from "../Firebase";
 import "./pages.css";
 
 
@@ -18,6 +17,7 @@ function Report() {
   });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false); // Track form submission
   const navigate = useNavigate();
+  const firebaseEndpoint = "/sendData"
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +35,21 @@ function Report() {
     e.preventDefault();
     // Handle form submission here, you can access the form data in formData
     console.log(formData);
-    sendData(formData);
+    fetch(firebaseEndpoint, {
+      method: 'POST',
+      mode: "no-cors",
+      headers: {
+        'Content-Type': 'application/json', // Set the content type to JSON
+      },
+      body: JSON.stringify(formData), // Convert data to JSON string
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.result); // Log the response from the server
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     
   };
 
