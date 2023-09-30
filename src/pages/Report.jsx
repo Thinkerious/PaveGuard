@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 //import sendData from "../Firebase";
+import "./pages.css";
 
 
 function Report() {
