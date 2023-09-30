@@ -1,4 +1,12 @@
 import React, { useState } from "react";
+const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
+const serviceAccount = require('../node_modules/firebase-admin/lib/credential/paveguard-3f8cb-2f0d8274b721.json');
+initializeApp({
+  credential: cert(serviceAccount)
+});
+
+const db = getFirestore();
 
 function Report() {
   const [showExtraInfo, setShowExtraInfo] = useState(false);
@@ -22,10 +30,13 @@ function Report() {
     setShowExtraInfo(!showExtraInfo);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission here, you can access the form data in formData
     console.log(formData);
+    const docRef = await db.collection('potholes').add(
+      formData
+    );
   };
 
   return (
