@@ -7,6 +7,9 @@ initializeApp({
 });
 
 const db = getFirestore();
+import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
+
 
 function Report() {
   const [showExtraInfo, setShowExtraInfo] = useState(false);
@@ -17,6 +20,8 @@ function Report() {
     description: "",
     location: "",
   });
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false); // Track form submission
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,81 +39,95 @@ function Report() {
     e.preventDefault();
     // Handle form submission here, you can access the form data in formData
     console.log(formData);
-    const docRef = await db.collection('potholes').add(
-      formData
-    );
   };
 
   return (
     <>
-      <h1>Report page</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <input
-            type="file"
-            accept="image/*"
-            // Handle file upload here
-          />
-        </label>
-        <div>
-          <label>
+    <div className="container mt-5">
+      <h1 className="mb-4">Report a Hazard</h1>
+      {isFormSubmitted ? (
+        <>
+          <div className="alert alert-success">
+            Thank you for your report! We appreciate your contribution.
+          </div>
+          <button
+            onClick={handleReturnToHome}
+            className="btn btn-primary mt-3"
+          >
+            Return to Home
+          </button>
+        </>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">Upload an Image:</label>
+            <input
+              type="file"
+              className="form-control"
+              accept="image/*"
+              // Handle file upload here
+            />
+          </div>
+          <div className="mb-3 form-check">
             <input
               type="checkbox"
+              className="form-check-input"
               onChange={handleCheckboxChange}
+              id="extraInfoCheckbox"
             />
-            Provide extra information
-          </label>
-        </div>
-        {showExtraInfo && (
-          <>
-            <label>
-              Full Name:
+            <label className="form-check-label" htmlFor="extraInfoCheckbox">
+              Provide extra information
+            </label>
+          </div>
+          {showExtraInfo && (
+            <div>
+              <label className="form-label">Full Name:</label>
               <input
                 type="text"
+                className="form-control mb-3"
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleInputChange}
               />
-            </label>
-            <label>
-              Phone Number:
+              <label className="form-label">Phone Number:</label>
               <input
                 type="text"
+                className="form-control mb-3"
                 name="phoneNumber"
                 value={formData.phoneNumber}
                 onChange={handleInputChange}
               />
-            </label>
-            <label>
-              Email:
+              <label className="form-label">Email:</label>
               <input
                 type="email"
+                className="form-control mb-3"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
               />
-            </label>
-            <label>
-              Description of the Hazard:
+              <label className="form-label">Description of the Hazard:</label>
               <textarea
+                className="form-control mb-3"
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
               />
-            </label>
-            <label>
-              Location of the Hazard:
+              <label className="form-label">Location of the Hazard:</label>
               <input
                 type="text"
+                className="form-control mb-3"
                 name="location"
                 value={formData.location}
                 onChange={handleInputChange}
               />
-            </label>
-          </>
-        )}
-        <button type="submit">Submit</button>
-      </form>
+            </div>
+          )}
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+      )}
+    </div>
     </>
   );
 }
