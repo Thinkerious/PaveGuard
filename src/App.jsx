@@ -4,6 +4,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import Report from './pages/Report';
 import AdminLogin from './pages/AdminLogin';
 import Home from "./pages/Home";
+import Navbar from "./pages/Navbar";
 
 function App() {
   return (

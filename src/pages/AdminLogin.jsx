@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 function AdminLogin() {
   const navigate = useNavigate();
@@ -39,33 +40,35 @@ function AdminLogin() {
 
   return (
     <>
-      <h1>AdminLogin page</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Username:
+      <div className="container mt-5">
+        <h1 className="mb-4">Admin Login</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">Username:</label>
             <input
               type="text"
+              className="form-control"
               name="username"
               value={formData.username}
               onChange={handleInputChange}
             />
-          </label>
-        </div>
-        <div>
-          <label>
-            Password:
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Password:</label>
             <input
               type="password"
+              className="form-control"
               name="password"
               value={formData.password}
               onChange={handleInputChange}
             />
-          </label>
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Login
+          </button>
+        </form>
+        {error && <p className="text-danger mt-2">{error}</p>}
+      </div>
     </>
   );
 }
