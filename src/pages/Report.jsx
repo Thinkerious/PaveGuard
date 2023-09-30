@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import "./pages.css";
 
 function Report() {
   const [showExtraInfo, setShowExtraInfo] = useState(false);

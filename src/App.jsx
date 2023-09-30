@@ -9,6 +9,7 @@ import Navbar from "./pages/Navbar";
 function App() {
   return (
     <>
+      <div className="gradient-background">
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -17,8 +18,9 @@ function App() {
           <Route path="/admin-login" element={<AdminLogin />} />
         </Routes>
       </Router> 
+      </div>
     </>
   );
-}
+} 
 
 export default App;

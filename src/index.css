@@ -3,3 +3,11 @@
 @import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 /* Your other CSS styles and imports */
+/* index.css */
+.gradient-background {
+    background: linear-gradient(to bottom, #1e5799, #00b894, #a55eea);
+    min-height: 100vh;
+    margin: 0; /* Remove default margin to fill the entire viewport */
+  }
+  
+  

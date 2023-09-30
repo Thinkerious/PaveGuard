@@ -1,0 +1,32 @@
+/* custom.css */
+
+/* Hover effect for buttons */
+.btn-animate {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .btn-animate:hover {
+    transform: scale(1.1); /* Increase the button size on hover */
+  }
+  
+  /* custom.css */
+
+/* Dark buttons with light hover effect */
+.btn-dark-light-hover {
+    background-color: #343a40; /* Dark button background color */
+    color: #fff; /* Button text color */
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .btn-dark-light-hover:hover {
+    background-color: #d1cdcd; /* Lighter background color on hover */
+  }
+
+  .custom-link {
+    text-decoration: none;
+  }
+  
+  .custom-link:hover {
+    text-decoration: none;
+  }
+  
