@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
-const serviceAccount = require('../node_modules/firebase-admin/lib/credential/paveguard-3f8cb-2f0d8274b721.json');
-initializeApp({
-  credential: cert(serviceAccount)
-});
 
-const db = getFirestore();
+
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+//import sendData from "../Firebase";
 
 
 function Report() {
@@ -39,6 +34,8 @@ function Report() {
     e.preventDefault();
     // Handle form submission here, you can access the form data in formData
     console.log(formData);
+    sendData(formData);
+    
   };
 
   return (
