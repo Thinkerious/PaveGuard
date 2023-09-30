@@ -1,7 +1,16 @@
 import React, { useState } from "react";
+const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
+const serviceAccount = require('../node_modules/firebase-admin/lib/credential/paveguard-3f8cb-2f0d8274b721.json');
+initializeApp({
+  credential: cert(serviceAccount)
+});
+
+const db = getFirestore();
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import "./pages.css";
+
 
 function Report() {
   const [showExtraInfo, setShowExtraInfo] = useState(false);
@@ -27,34 +36,10 @@ function Report() {
     setShowExtraInfo(!showExtraInfo);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Create an object with form data
-    const formDataObject = { ...formData };
-    
-    // Simulate a successful form submission (you can replace this with your actual logic)
-    // After successful submission, clear form inputs
-    setIsFormSubmitted(true); // Set form submitted state to true
-
-    // Reset form data
-    setFormData({
-      fullName: "",
-      phoneNumber: "",
-      email: "",
-      description: "",
-      location: "",
-    });
-
-    // Log the form data as an object
-    console.log("Form Data Object:", formDataObject);
-
-    // After successful submission, navigate back to the top of the form
-    window.scrollTo(0, 0);
-  };
-
-  const handleReturnToHome = () => {
-    navigate("/");
+    // Handle form submission here, you can access the form data in formData
+    console.log(formData);
   };
 
   return (
