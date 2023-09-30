@@ -9,13 +9,13 @@ function Home() {
       <br/>
       <div className="mb-3">
         <Link to="/admin-login" className="custom-link text-decoration-none">
-          <button className="btn btn-dark-light-hover btn-lg btn-block btn-animate mb-2">
+          <button className="btn btn-dark-light-hover btn-lg btn-animate mb-2">
             City Official Login
           </button>
           <br/>
         </Link>
         <Link to="/report" className="custom-link text-decoration-none">
-          <button className="btn btn-dark-light-hover btn-lg btn-block btn-animate">
+          <button className="btn btn-dark-light-hover btn-lg btn-animate">
             Report A Road Hazard
           </button>
         </Link>
